@@ -148,6 +148,8 @@ public class Game implements AutoCloseable {
         }
 
         alreadyClosed = true;
-        // TODO: teardown
+
+        // cleanup
+        playtimeTicker.stop();
     }
 }
