@@ -41,6 +41,8 @@ public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<Highscore
         myRecyclerViewItemHolder.scoreTv.setText(hs.getScore() + "");
         myRecyclerViewItemHolder.guessesTv.setText(hs.getGuessCount() + "");
         myRecyclerViewItemHolder.playtimeTv.setText(hs.getPlayTime() + "");
+        myRecyclerViewItemHolder.timestampTv.setText(Highscore.formatter.format(hs.getTimestamp()) + "");
+
 
         myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,7 @@ public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<Highscore
     }
 
     class MyRecyclerViewItemHolder extends RecyclerView.ViewHolder {
-        TextView digitsTv, guessesTv, scoreTv, playtimeTv;
+        TextView digitsTv, guessesTv, scoreTv, playtimeTv, timestampTv;
         ConstraintLayout parentLayout;
 
         public MyRecyclerViewItemHolder(@NonNull View itemView) {
@@ -67,6 +69,7 @@ public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<Highscore
             guessesTv = itemView.findViewById(R.id.guessesTv);
             scoreTv = itemView.findViewById(R.id.scoreTv);
             playtimeTv = itemView.findViewById(R.id.playtimeTv);
+            timestampTv = itemView.findViewById(R.id.timestampTv);
             parentLayout = itemView.findViewById(R.id.itemConstraintLayout);
         }
     }
