@@ -1,6 +1,12 @@
 package com.starikcetin.ctis487.guessthenumber.gameplay;
 
+import com.starikcetin.ctis487.guessthenumber.eventbus.EventBus;
+
 public class GameSys {
+    public static final EventBus<CurrentGuessChangedEvent> currentGuessChangeEventBus = new EventBus<>();
+    public static final EventBus<GuessEvent> guessEventBus = new EventBus<>();
+    public static final EventBus<GameOverEvent> gameOverEventBus = new EventBus<>();
+
     private static Game game;
 
     public static Game getGame() {
