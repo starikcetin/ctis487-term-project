@@ -1,6 +1,10 @@
 package com.starikcetin.ctis487.guessthenumber.gameplay;
 
 import com.starikcetin.ctis487.guessthenumber.eventbus.EventBus;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.CurrentGuessChangedEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.GameOverEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEvent;
 
 public class GameSys {
     public static final EventBus<CurrentGuessChangedEvent> currentGuessChangeEventBus = new EventBus<>();

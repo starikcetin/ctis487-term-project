@@ -1,8 +1,7 @@
-package com.starikcetin.ctis487.guessthenumber.gameplay;
+package com.starikcetin.ctis487.guessthenumber.gameplay.events;
 
 import com.starikcetin.ctis487.guessthenumber.eventbus.EventWithArgs;
-
-import java.util.List;
+import com.starikcetin.ctis487.guessthenumber.gameplay.GameSummary;
 
 public class GameOverEvent extends EventWithArgs<GameOverEvent.Args> {
     public GameOverEvent(Object sender, Args args) {

@@ -2,6 +2,10 @@ package com.starikcetin.ctis487.guessthenumber.gameplay;
 
 import android.util.Log;
 
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.CurrentGuessChangedEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.GameOverEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEvent;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEvent;
 import com.starikcetin.ctis487.guessthenumber.ticker.Ticker;
 
 import java.util.ArrayList;
@@ -71,7 +75,7 @@ public class Game implements AutoCloseable {
         guessCount++;
         currentGuess.clear();
 
-        GuessEvent.Args args = new GuessEvent.Args(evaluation);
+        GuessEvent.Args args = new GuessEvent.Args(evaluation, guessCount);
         GuessEvent event = new GuessEvent(this, args);
         GameSys.guessEventBus.emit(event);
     }

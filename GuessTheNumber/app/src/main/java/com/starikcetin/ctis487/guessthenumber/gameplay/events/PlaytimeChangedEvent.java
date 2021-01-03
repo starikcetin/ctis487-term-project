@@ -1,4 +1,4 @@
-package com.starikcetin.ctis487.guessthenumber.gameplay;
+package com.starikcetin.ctis487.guessthenumber.gameplay.events;
 
 import com.starikcetin.ctis487.guessthenumber.eventbus.EventWithArgs;
 

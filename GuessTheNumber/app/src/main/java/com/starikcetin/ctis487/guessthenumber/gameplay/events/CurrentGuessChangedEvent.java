@@ -1,8 +1,7 @@
-package com.starikcetin.ctis487.guessthenumber.gameplay;
+package com.starikcetin.ctis487.guessthenumber.gameplay.events;
 
 import com.starikcetin.ctis487.guessthenumber.eventbus.EventWithArgs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentGuessChangedEvent extends EventWithArgs<CurrentGuessChangedEvent.Args> {
@@ -18,3 +17,4 @@ public class CurrentGuessChangedEvent extends EventWithArgs<CurrentGuessChangedE
         }
     }
 }
+
