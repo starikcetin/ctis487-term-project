@@ -36,6 +36,12 @@ public class GameActivity extends FragmentActivity {
         pager.setAdapter(new GamePagerAdapter(this));
         pager.setCurrentItem(GamePagerAdapter.GUESSING_PAGE_INDEX, false);
 
+        // Default offscreen page limit is 1. We start at 0, and then switch to 1 programmatically.
+        // This causes the fragment at index 2 (prev guess list) to not get initialized until switched.
+        // Setting the offscreen page limit to 2 forces the viewpager to initialize both indexes
+        // 1 and 2 at the beginning.
+        pager.setOffscreenPageLimit(2);
+
         GameSys.playtimeChangedEventBus.addListener(this::OnEvent);
         GameSys.guessEventBus.addListener(this::OnEvent);
     }

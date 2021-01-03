@@ -123,11 +123,11 @@ public class Game implements AutoCloseable {
             wrong++;
         }
 
-        return new Evaluation(correct, misplaced, wrong);
+        return new Evaluation(new ArrayList<>(currentGuess), correct, misplaced, wrong);
     }
 
     private void onCurrentGuessChanged() {
-        CurrentGuessChangedEvent.Args args = new CurrentGuessChangedEvent.Args(currentGuess);
+        CurrentGuessChangedEvent.Args args = new CurrentGuessChangedEvent.Args(new ArrayList<>(currentGuess));
         CurrentGuessChangedEvent event = new CurrentGuessChangedEvent(this, args);
         GameSys.currentGuessChangeEventBus.emit(event);
     }
