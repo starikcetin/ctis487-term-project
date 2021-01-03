@@ -24,4 +24,9 @@ public class Game {
         // TODO implement
         return 1;
     }
+
+    /** reveals the answer, triggers unsuccessful game over */
+    public void reveal() {
+        // TODO implement
+    }
 }
