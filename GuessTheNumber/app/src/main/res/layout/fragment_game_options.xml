@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/options_root_frameLayout_static"
+    android:id="@+id/options_root_linearLayout_static"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".GameOptionsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/options_placeholder_textView_static"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Options View" />
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/options_reveal_button"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="Reveal Answer"
+        app:icon="@drawable/reveal" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="0" />
+
+    <Button
+        android:id="@+id/options_mainMenu_button"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:text="Main Menu"
+        app:icon="@drawable/menu" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+</LinearLayout>
