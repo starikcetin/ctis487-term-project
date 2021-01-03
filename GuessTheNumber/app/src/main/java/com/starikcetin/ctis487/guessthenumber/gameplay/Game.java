@@ -10,18 +10,18 @@ public class Game {
     /** returns whether the input is valid or not */
     public boolean digitInput(int digit) {
         // TODO implement
-        return false;
+        return true;
     }
 
     /** returns whether the guess is valid or not (validity is NOT whether the guess is correct) */
     public boolean guessInput() {
         // TODO implement
-        return false;
+        return true;
     }
 
     /** returns the deleted digit, or -1 if invalid. */
     public int deleteInput() {
         // TODO implement
-        return 0;
+        return 1;
     }
 }

@@ -4,6 +4,11 @@ public class GameSys {
     private static Game game;
 
     public static Game getGame() {
+        // TODO: delete, for debugging purposes
+        if(game == null) {
+            newGame(3);
+        }
+
         return game;
     }
 
