@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GuessTheNumber</string>
+    <string name="score_head">Score</string>
 </resources>
