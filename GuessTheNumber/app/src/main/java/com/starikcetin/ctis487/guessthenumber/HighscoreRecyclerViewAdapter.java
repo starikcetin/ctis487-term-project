@@ -47,7 +47,7 @@ public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<Highscore
         myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ((HighscoresActivity) context).displayDialog(hs);
             }
         });
 
