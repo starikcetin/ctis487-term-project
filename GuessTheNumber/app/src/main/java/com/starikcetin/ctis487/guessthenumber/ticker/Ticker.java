@@ -12,7 +12,7 @@ public class Ticker {
         runnable = new Runnable() {
             @Override
             public void run() {
-                onTick.Action();
+                onTick.perform();
                 handler.postDelayed(this, periodInMs);
             }
         };
