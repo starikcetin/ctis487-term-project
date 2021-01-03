@@ -7,58 +7,94 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GameGuessingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
+
+import java.util.ArrayList;
+
 public class GameGuessingFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ArrayList<View> allNumpadButtons;
 
     public GameGuessingFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GameGuessingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GameGuessingFragment newInstance(String param1, String param2) {
-        GameGuessingFragment fragment = new GameGuessingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_guessing, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_game_guessing, container, false);
+
+        ImageButton deleteButton = view.findViewById(R.id.guessing_delete_button);
+        deleteButton.setOnClickListener(this::deleteOnClick);
+
+        ImageButton guessButton = view.findViewById(R.id.guessing_guess_button);
+        guessButton.setOnClickListener(this::guessOnClick);
+
+        Button num9Button = view.findViewById(R.id.guessing_9_button);
+        num9Button.setOnClickListener(v -> this.numOnClick(v, 9));
+
+        Button num8Button = view.findViewById(R.id.guessing_8_button);
+        num8Button.setOnClickListener(v -> this.numOnClick(v, 8));
+
+        Button num7Button = view.findViewById(R.id.guessing_7_button);
+        num7Button.setOnClickListener(v -> this.numOnClick(v, 7));
+
+        Button num6Button = view.findViewById(R.id.guessing_6_button);
+        num6Button.setOnClickListener(v -> this.numOnClick(v, 6));
+
+        Button num5Button = view.findViewById(R.id.guessing_5_button);
+        num5Button.setOnClickListener(v -> this.numOnClick(v, 5));
+
+        Button num4Button = view.findViewById(R.id.guessing_4_button);
+        num4Button.setOnClickListener(v -> this.numOnClick(v, 4));
+
+        Button num3Button = view.findViewById(R.id.guessing_3_button);
+        num3Button.setOnClickListener(v -> this.numOnClick(v, 3));
+
+        Button num2Button = view.findViewById(R.id.guessing_2_button);
+        num2Button.setOnClickListener(v -> this.numOnClick(v, 2));
+
+        Button num1Button = view.findViewById(R.id.guessing_1_button);
+        num1Button.setOnClickListener(v -> this.numOnClick(v, 1));
+
+        allNumpadButtons = new ArrayList<>();
+        allNumpadButtons.add(num1Button);
+        allNumpadButtons.add(num2Button);
+        allNumpadButtons.add(num3Button);
+        allNumpadButtons.add(num4Button);
+        allNumpadButtons.add(num5Button);
+        allNumpadButtons.add(num6Button);
+        allNumpadButtons.add(num7Button);
+        allNumpadButtons.add(num8Button);
+        allNumpadButtons.add(num9Button);
+
+        return view;
+    }
+
+    private void numOnClick(View view, int number) {
+        boolean isValid = GameSys.getGame().digitInput(number);
+        if(isValid) {
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void guessOnClick(View view) {
+        boolean isValid = GameSys.getGame().guessInput();
+        if(isValid) {
+            allNumpadButtons.forEach(b -> b.setVisibility(View.VISIBLE));
+        }
+    }
+
+    private void deleteOnClick(View v) {
+        int deletedDigit = GameSys.getGame().deleteInput();
+        if(deletedDigit != -1) {
+            allNumpadButtons.get(deletedDigit - 1).setVisibility(View.VISIBLE);
+        }
     }
 }
