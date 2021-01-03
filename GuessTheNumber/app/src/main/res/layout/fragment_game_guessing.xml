@@ -8,35 +8,14 @@
     tools:context=".GameGuessingFragment">
 
     <LinearLayout
-        android:id="@+id/guessing_display_linearLayout_static"
-        android:layout_width="match_parent"
+        android:id="@+id/guessing_actions_linearLayout_static"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/guessing_display_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            android:text="# # # # #"
-            android:textSize="48sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/guessing_actions_linearLayout_static"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guessing_display_linearLayout_static">
 
         <Space
             android:layout_width="wrap_content"

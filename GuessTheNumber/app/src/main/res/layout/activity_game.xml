@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
+    <TextView
+        android:id="@+id/game_currentGuess_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0"
+        android:text="# # # # #"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_header_constraintLayout_static" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/game_header_constraintLayout_static"
         android:layout_width="match_parent"
@@ -66,8 +78,9 @@
         android:id="@+id/game_body_viewPager_static"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/game_header_constraintLayout_static" />
+        app:layout_constraintTop_toBottomOf="@+id/game_currentGuess_textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
