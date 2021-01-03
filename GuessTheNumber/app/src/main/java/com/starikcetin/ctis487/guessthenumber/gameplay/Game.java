@@ -2,6 +2,8 @@ package com.starikcetin.ctis487.guessthenumber.gameplay;
 
 import android.util.Log;
 
+import com.starikcetin.ctis487.guessthenumber.ticker.Ticker;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,6 +14,9 @@ public class Game implements AutoCloseable {
     public final int digitCount;
     private final List<Integer> targetNumber;
     private final List<Integer> currentGuess = new ArrayList<>();
+    private final Ticker playtimeTicker;
+    private int playtimeInSeconds = 0;
+    private int guessCount = 0;
 
     public Game(int digitCount) {
         this.digitCount = digitCount;
@@ -26,6 +31,8 @@ public class Game implements AutoCloseable {
         }
 
         this.targetNumber = Collections.unmodifiableList(targetNumber);
+
+        playtimeTicker = new Ticker(1000, () -> playtimeInSeconds++);
     }
 
     /** returns whether the input is valid or not */
@@ -38,7 +45,7 @@ public class Game implements AutoCloseable {
         }
 
         currentGuess.add(digit);
-        emitCurrentGuessChanged();
+        onCurrentGuessChanged();
         return true;
     }
 
@@ -52,16 +59,18 @@ public class Game implements AutoCloseable {
         }
 
         Evaluation evaluation = evaluate();
-        emitGuess(evaluation);
+        onGuess(evaluation);
 
         if(evaluation.correct == digitCount) {
-            emitGameOver(true);
+            onGameOver(true);
         }
 
         return true;
     }
 
-    private void emitGuess(Evaluation evaluation) {
+    private void onGuess(Evaluation evaluation) {
+        guessCount++;
+
         GuessEvent.Args args = new GuessEvent.Args(evaluation);
         GuessEvent event = new GuessEvent(this, args);
         GameSys.guessEventBus.emit(event);
@@ -76,13 +85,13 @@ public class Game implements AutoCloseable {
         }
 
         int removed = currentGuess.remove(currentGuessSize);
-        emitCurrentGuessChanged();
+        onCurrentGuessChanged();
         return removed;
     }
 
     /** reveals the answer, triggers unsuccessful game over */
     public void reveal() {
-        // TODO implement
+        onGameOver(false);
     }
 
     private Evaluation evaluate() {
@@ -113,14 +122,16 @@ public class Game implements AutoCloseable {
         return new Evaluation(correct, misplaced, wrong);
     }
 
-    private void emitCurrentGuessChanged() {
+    private void onCurrentGuessChanged() {
         CurrentGuessChangedEvent.Args args = new CurrentGuessChangedEvent.Args(currentGuess);
         CurrentGuessChangedEvent event = new CurrentGuessChangedEvent(this, args);
         GameSys.currentGuessChangeEventBus.emit(event);
     }
 
-    private void emitGameOver(boolean isVictory) {
-        GameSummary gameSummary = new GameSummary(targetNumber, -1, -1); // TODO guessCount and playtimeInSeconds
+    private void onGameOver(boolean isVictory) {
+        playtimeTicker.stop();
+
+        GameSummary gameSummary = new GameSummary(targetNumber, guessCount, playtimeInSeconds);
         GameOverEvent.Args args = new GameOverEvent.Args(isVictory, gameSummary);
         GameOverEvent event = new GameOverEvent(this, args);
         GameSys.gameOverEventBus.emit(event);
