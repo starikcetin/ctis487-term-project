@@ -3,6 +3,7 @@ package com.starikcetin.ctis487.guessthenumber.gameplay;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -15,11 +16,15 @@ public class Game implements AutoCloseable {
     public Game(int digitCount) {
         this.digitCount = digitCount;
 
+        List<Integer> possibleDigits = Arrays.asList(9, 8, 7, 6, 5, 4, 3, 2, 1);
         ArrayList<Integer> targetNumber = new ArrayList<>();
+
         for (int i = 0; i < digitCount; i++) {
-            int rnd = ThreadLocalRandom.current().nextInt(1, 10); // TODO eliminate digit repetition possibility
-            targetNumber.add(rnd);
+            int rndIndex = ThreadLocalRandom.current().nextInt(0, possibleDigits.size());
+            int rndDigit = possibleDigits.remove(rndIndex);
+            targetNumber.add(rndDigit);
         }
+
         this.targetNumber = Collections.unmodifiableList(targetNumber);
     }
 
