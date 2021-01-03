@@ -21,7 +21,7 @@ public class Game implements AutoCloseable {
     public Game(int digitCount) {
         this.digitCount = digitCount;
 
-        List<Integer> possibleDigits = Arrays.asList(9, 8, 7, 6, 5, 4, 3, 2, 1);
+        List<Integer> possibleDigits = new ArrayList<>(Arrays.asList(9, 8, 7, 6, 5, 4, 3, 2, 1));
         ArrayList<Integer> targetNumber = new ArrayList<>();
 
         for (int i = 0; i < digitCount; i++) {
@@ -37,10 +37,7 @@ public class Game implements AutoCloseable {
 
     /** returns whether the input is valid or not */
     public boolean digitInput(int digit) {
-        int currentGuessSize = currentGuess.size();
-        boolean isCurrentGuessFull = currentGuessSize >= digitCount - 1;
-
-        if(!isCurrentGuessFull) {
+        if(isCurrentGuessFull()) {
             return false;
         }
 
@@ -51,10 +48,7 @@ public class Game implements AutoCloseable {
 
     /** returns whether the guess is valid or not (validity is NOT whether the guess is correct) */
     public boolean guessInput() {
-        int currentGuessSize = currentGuess.size();
-        boolean isCurrentGuessFull = currentGuessSize >= digitCount - 1;
-
-        if(!isCurrentGuessFull) {
+        if(!isCurrentGuessFull()) {
             return false;
         }
 
@@ -70,6 +64,7 @@ public class Game implements AutoCloseable {
 
     private void onGuess(Evaluation evaluation) {
         guessCount++;
+        currentGuess.clear();
 
         GuessEvent.Args args = new GuessEvent.Args(evaluation);
         GuessEvent event = new GuessEvent(this, args);
@@ -84,7 +79,7 @@ public class Game implements AutoCloseable {
             return -1;
         }
 
-        int removed = currentGuess.remove(currentGuessSize);
+        int removed = currentGuess.remove(currentGuessSize - 1);
         onCurrentGuessChanged();
         return removed;
     }
@@ -135,6 +130,10 @@ public class Game implements AutoCloseable {
         GameOverEvent.Args args = new GameOverEvent.Args(isVictory, gameSummary);
         GameOverEvent event = new GameOverEvent(this, args);
         GameSys.gameOverEventBus.emit(event);
+    }
+
+    private boolean isCurrentGuessFull() {
+        return currentGuess.size() >= digitCount;
     }
 
     // ---------- AutoClose ----------

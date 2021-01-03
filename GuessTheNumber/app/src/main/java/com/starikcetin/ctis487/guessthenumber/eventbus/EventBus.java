@@ -3,7 +3,7 @@ package com.starikcetin.ctis487.guessthenumber.eventbus;
 import java.util.ArrayList;
 
 public class EventBus<TEvent extends Event> {
-    private ArrayList<EventListener<TEvent>> _listeners;
+    private final ArrayList<EventListener<TEvent>> _listeners = new ArrayList<>();
 
     public void emit(TEvent event) {
         _listeners.forEach(l -> l.OnEvent(event));
