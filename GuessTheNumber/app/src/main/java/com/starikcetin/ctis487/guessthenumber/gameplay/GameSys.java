@@ -6,6 +6,7 @@ public class GameSys {
     public static final EventBus<CurrentGuessChangedEvent> currentGuessChangeEventBus = new EventBus<>();
     public static final EventBus<GuessEvent> guessEventBus = new EventBus<>();
     public static final EventBus<GameOverEvent> gameOverEventBus = new EventBus<>();
+    public static final EventBus<PlaytimeChangedEvent> playtimeChangedEventBus = new EventBus<>();
 
     private static Game game;
 

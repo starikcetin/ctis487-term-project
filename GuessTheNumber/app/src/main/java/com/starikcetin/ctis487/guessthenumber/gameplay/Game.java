@@ -32,7 +32,12 @@ public class Game implements AutoCloseable {
 
         this.targetNumber = Collections.unmodifiableList(targetNumber);
 
-        playtimeTicker = new Ticker(1000, () -> playtimeInSeconds++);
+        playtimeTicker = new Ticker(1000, this::onPlaytimeTick);
+    }
+
+    private void onPlaytimeTick() {
+        playtimeInSeconds++;
+        emitPlaytimeChanged();
     }
 
     /** returns whether the input is valid or not */
@@ -134,6 +139,12 @@ public class Game implements AutoCloseable {
 
     private boolean isCurrentGuessFull() {
         return currentGuess.size() >= digitCount;
+    }
+
+    private void emitPlaytimeChanged() {
+        PlaytimeChangedEvent.Args args = new PlaytimeChangedEvent.Args(playtimeInSeconds);
+        PlaytimeChangedEvent event = new PlaytimeChangedEvent(this, args);
+        GameSys.playtimeChangedEventBus.emit(event);
     }
 
     // ---------- AutoClose ----------
