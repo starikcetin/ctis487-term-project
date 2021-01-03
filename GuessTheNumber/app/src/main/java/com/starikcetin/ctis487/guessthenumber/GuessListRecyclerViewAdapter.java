@@ -58,7 +58,7 @@ public class GuessListRecyclerViewAdapter extends RecyclerView.Adapter<GuessList
         }
 
         public void fill(int index, Evaluation evaluation) {
-            indexTv.setText(String.format(Locale.getDefault(), "%d", index));
+            indexTv.setText(String.format(Locale.getDefault(), "%d", index + 1));
             String guess = Utils.formatGuess(evaluation.guess);
             guessTv.setText(guess);
             correctTv.setText(String.format(Locale.getDefault(), "%d", evaluation.correct));
