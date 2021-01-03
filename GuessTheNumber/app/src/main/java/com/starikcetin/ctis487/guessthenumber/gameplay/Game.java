@@ -1,6 +1,8 @@
 package com.starikcetin.ctis487.guessthenumber.gameplay;
 
-public class Game {
+import android.util.Log;
+
+public class Game implements AutoCloseable {
     public final int digitCount;
 
     public Game(int digitCount) {
@@ -28,5 +30,19 @@ public class Game {
     /** reveals the answer, triggers unsuccessful game over */
     public void reveal() {
         // TODO implement
+    }
+
+    // ---------- AutoClose ----------
+    private boolean alreadyClosed = false;
+
+    @Override
+    public void close() throws Exception {
+        if(alreadyClosed) {
+            Log.w("AlreadyClosed", "This Game class was already closed! Ignoring.");
+            return;
+        }
+
+        alreadyClosed = true;
+        // TODO: teardown
     }
 }
