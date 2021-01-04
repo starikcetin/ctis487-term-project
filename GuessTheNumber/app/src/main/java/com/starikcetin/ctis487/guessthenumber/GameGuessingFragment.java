@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameGuessingFragment extends Fragment {
     private ArrayList<View> allNumpadButtons;
@@ -63,16 +64,7 @@ public class GameGuessingFragment extends Fragment {
         Button num1Button = view.findViewById(R.id.guessing_1_button);
         num1Button.setOnClickListener(v -> this.numOnClick(v, 1));
 
-        allNumpadButtons = new ArrayList<>();
-        allNumpadButtons.add(num1Button);
-        allNumpadButtons.add(num2Button);
-        allNumpadButtons.add(num3Button);
-        allNumpadButtons.add(num4Button);
-        allNumpadButtons.add(num5Button);
-        allNumpadButtons.add(num6Button);
-        allNumpadButtons.add(num7Button);
-        allNumpadButtons.add(num8Button);
-        allNumpadButtons.add(num9Button);
+        allNumpadButtons = new ArrayList<>(Arrays.asList(num1Button, num2Button, num3Button, num4Button, num5Button, num6Button, num7Button, num8Button, num9Button));
 
         return view;
     }
