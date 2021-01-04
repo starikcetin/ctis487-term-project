@@ -1,7 +1,5 @@
 package com.starikcetin.ctis487.guessthenumber.gameplay;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
 import java.util.List;
 

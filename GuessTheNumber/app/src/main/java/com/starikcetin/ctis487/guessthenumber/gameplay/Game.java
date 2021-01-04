@@ -21,6 +21,8 @@ public class Game implements AutoCloseable {
     private final Ticker playtimeTicker;
     private int playtimeInSeconds = 0;
     private int guessCount = 0;
+    // ---------- AutoClose ----------
+    private boolean alreadyClosed = false;
 
     public Game(int digitCount) {
         this.digitCount = digitCount;
@@ -44,9 +46,11 @@ public class Game implements AutoCloseable {
         emitPlaytimeChanged();
     }
 
-    /** returns whether the input is valid or not */
+    /**
+     * returns whether the input is valid or not
+     */
     public boolean digitInput(int digit) {
-        if(isCurrentGuessFull()) {
+        if (isCurrentGuessFull()) {
             return false;
         }
 
@@ -55,16 +59,18 @@ public class Game implements AutoCloseable {
         return true;
     }
 
-    /** returns whether the guess is valid or not (validity is NOT whether the guess is correct) */
+    /**
+     * returns whether the guess is valid or not (validity is NOT whether the guess is correct)
+     */
     public boolean guessInput() {
-        if(!isCurrentGuessFull()) {
+        if (!isCurrentGuessFull()) {
             return false;
         }
 
         Evaluation evaluation = evaluate();
         onGuess(evaluation);
 
-        if(evaluation.correct == digitCount) {
+        if (evaluation.correct == digitCount) {
             onGameOver(true);
         }
 
@@ -81,11 +87,13 @@ public class Game implements AutoCloseable {
         GameSys.guessEventBus.emit(event);
     }
 
-    /** returns the deleted digit, or -1 if invalid. */
+    /**
+     * returns the deleted digit, or -1 if invalid.
+     */
     public int deleteInput() {
         int currentGuessSize = currentGuess.size();
 
-        if(currentGuessSize <= 0) {
+        if (currentGuessSize <= 0) {
             return -1;
         }
 
@@ -94,7 +102,9 @@ public class Game implements AutoCloseable {
         return removed;
     }
 
-    /** reveals the answer, triggers unsuccessful game over */
+    /**
+     * reveals the answer, triggers unsuccessful game over
+     */
     public void reveal() {
         onGameOver(false);
     }
@@ -109,13 +119,13 @@ public class Game implements AutoCloseable {
             int targetDigit = targetNumber.get(i);
 
             // 1. check for correct
-            if(guessDigit == targetDigit) {
+            if (guessDigit == targetDigit) {
                 correct++;
                 continue;
             }
 
             // 2. check for misplaced
-            if(targetNumber.contains(guessDigit)) {
+            if (targetNumber.contains(guessDigit)) {
                 misplaced++;
                 continue;
             }
@@ -152,12 +162,9 @@ public class Game implements AutoCloseable {
         GameSys.playtimeChangedEventBus.emit(event);
     }
 
-    // ---------- AutoClose ----------
-    private boolean alreadyClosed = false;
-
     @Override
     public void close() {
-        if(alreadyClosed) {
+        if (alreadyClosed) {
             Log.w("AlreadyClosed", "This Game class was already closed! Ignoring.");
             return;
         }

@@ -1,46 +1,45 @@
 package com.starikcetin.ctis487.guessthenumber;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.ocpsoft.prettytime.PrettyTime;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class HighscoresActivity extends AppCompatActivity {
     private static final PrettyTime prettyTime = new PrettyTime();
-
-    private RecyclerView mRecyclerView;
-
-    // ArrayList containing HashMap for RecyclerView
-    private ArrayList<Highscore> highscoreList = new ArrayList();
-
     //Database related
     DBHelper dbHelper;
-
     IntentFilter mIntentFilter;
+    private RecyclerView mRecyclerView;
+    // ArrayList containing HashMap for RecyclerView
+    private ArrayList<Highscore> highscoreList = new ArrayList();
+    private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Storing the received data into a Bundle
+            Bundle b = intent.getExtras();
+            highscoreList = b.getParcelableArrayList("highscorelist");
+            for (Highscore hs : highscoreList) {
+                HighscoreDB.insert(dbHelper, hs);
+            }
+            fillListView();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,19 +87,6 @@ public class HighscoresActivity extends AppCompatActivity {
 
 
     }
-
-    private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Storing the received data into a Bundle
-            Bundle b = intent.getExtras();
-            highscoreList = b.getParcelableArrayList("highscorelist");
-            for (Highscore hs : highscoreList) {
-                HighscoreDB.insert(dbHelper, hs);
-            }
-            fillListView();
-        }
-    };
 
     void fillListView() {
         ArrayList<Highscore> highscoresinHighscoreTable = HighscoreDB.getAllHighscores(dbHelper);

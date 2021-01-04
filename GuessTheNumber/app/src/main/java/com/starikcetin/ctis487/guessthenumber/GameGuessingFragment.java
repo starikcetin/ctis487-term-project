@@ -1,15 +1,13 @@
 package com.starikcetin.ctis487.guessthenumber;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
 
@@ -71,21 +69,21 @@ public class GameGuessingFragment extends Fragment {
 
     private void numOnClick(View view, int number) {
         boolean isValid = GameSys.getGame().digitInput(number);
-        if(isValid) {
+        if (isValid) {
             view.setVisibility(View.INVISIBLE);
         }
     }
 
     private void guessOnClick(View view) {
         boolean isValid = GameSys.getGame().guessInput();
-        if(isValid) {
+        if (isValid) {
             allNumpadButtons.forEach(b -> b.setVisibility(View.VISIBLE));
         }
     }
 
     private void deleteOnClick(View v) {
         int deletedDigit = GameSys.getGame().deleteInput();
-        if(deletedDigit != -1) {
+        if (deletedDigit != -1) {
             allNumpadButtons.get(deletedDigit - 1).setVisibility(View.VISIBLE);
         }
     }

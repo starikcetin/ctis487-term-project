@@ -18,14 +18,18 @@ public class GameSys {
         return game;
     }
 
-    /** starts a new game */
+    /**
+     * starts a new game
+     */
     public static void newGame(int digitCount) {
         game = new Game(digitCount);
     }
 
-    /** tears-down the game */
+    /**
+     * tears-down the game
+     */
     public static void cleanup() {
-        if(game != null) {
+        if (game != null) {
             game.close();
             game = null;
         }

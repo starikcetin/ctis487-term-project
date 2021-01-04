@@ -19,9 +19,12 @@ public class GamePagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
         switch (position) {
-            case OPTIONS_PAGE_INDEX: return new GameOptionsFragment();
-            case GUESSING_PAGE_INDEX: return new GameGuessingFragment();
-            case PREV_GUESSES_PAGE_INDEX: return new GamePrevGuessesFragment();
+            case OPTIONS_PAGE_INDEX:
+                return new GameOptionsFragment();
+            case GUESSING_PAGE_INDEX:
+                return new GameGuessingFragment();
+            case PREV_GUESSES_PAGE_INDEX:
+                return new GamePrevGuessesFragment();
         }
 
         throw new IndexOutOfBoundsException("GamePager: position " + position + " is invalid.");

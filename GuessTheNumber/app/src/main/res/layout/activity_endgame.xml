@@ -99,10 +99,10 @@
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_marginBottom="40dp"
+        android:onClick="mainMenuOnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/menu"
-        android:onClick="mainMenuOnClick"/>
+        app:srcCompat="@drawable/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

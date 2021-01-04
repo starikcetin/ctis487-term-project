@@ -1,15 +1,14 @@
 package com.starikcetin.ctis487.guessthenumber;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.starikcetin.ctis487.guessthenumber.gameplay.GameSummary;
-import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
 
 public class EndgameActivity extends AppCompatActivity {
 
@@ -37,10 +36,9 @@ public class EndgameActivity extends AppCompatActivity {
         TextView guessCountTv = findViewById(R.id.endgame_guessCount_textView);
         guessCountTv.setText(String.valueOf(gameSummary.guessCount));
 
-        if(isVictory) {
+        if (isVictory) {
             Sound.victory(this);
-        }
-        else {
+        } else {
             Sound.defeat(this);
         }
     }

@@ -15,8 +15,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 
 public class ParseHighscoreJSONService extends IntentService {
-    JSONArray highscores;
-    ArrayList<Highscore> highscoreList;
     public static final String TAG_HIGHSCORES = "highscores";
     public static final String TAG_HIGHSCORE = "highscore";
     public static final String TAG_SCORE = "score";
@@ -24,6 +22,8 @@ public class ParseHighscoreJSONService extends IntentService {
     public static final String TAG_GUESSES = "guesses";
     public static final String TAG_PLAYTIME = "playtime";
     public static final String TAG_TIMESTAMP = "timestamp";
+    JSONArray highscores;
+    ArrayList<Highscore> highscoreList;
 
     public ParseHighscoreJSONService() {
         super("MyServiceHighscore");

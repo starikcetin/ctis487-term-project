@@ -2,22 +2,17 @@ package com.starikcetin.ctis487.guessthenumber;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.starikcetin.ctis487.guessthenumber.eventbus.EventListener;
 import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.CurrentGuessChangedEvent;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.GameOverEvent;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEvent;
-import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEventListener;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEvent;
-import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEventListener;
 
 import java.util.Locale;
 
