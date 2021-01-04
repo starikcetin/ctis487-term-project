@@ -38,6 +38,7 @@ public class GameOptionsFragment extends Fragment {
     }
 
     private void mainMenuOnClick(View view) {
-        GameSys.goToMainMenu();
+        GameSys.cleanup();
+        // TODO: switch to main menu
     }
 }

@@ -155,7 +155,7 @@ public class Game implements AutoCloseable {
     private boolean alreadyClosed = false;
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         if(alreadyClosed) {
             Log.w("AlreadyClosed", "This Game class was already closed! Ignoring.");
             return;

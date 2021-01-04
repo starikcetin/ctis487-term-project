@@ -58,6 +58,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onDestroy() {
         GameSys.playtimeChangedEventBus.removeListener(this::OnEvent);
         GameSys.guessEventBus.removeListener(this::OnEvent);
+        GameSys.cleanup();
 
         super.onDestroy();
     }

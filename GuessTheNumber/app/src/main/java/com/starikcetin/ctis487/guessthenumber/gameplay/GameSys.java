@@ -23,15 +23,9 @@ public class GameSys {
         game = new Game(digitCount);
     }
 
-    /** tears-down the game and goes to main menu */
-    public static void goToMainMenu() {
-        try {
-            game.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    /** tears-down the game */
+    public static void cleanup() {
+        game.close();
         game = null;
-        // TODO switch to main menu view
     }
 }
