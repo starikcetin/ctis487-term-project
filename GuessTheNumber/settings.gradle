@@ -1,2 +1,3 @@
+include ':prettytime-5.0.0.Final'
 include ':app'
 rootProject.name = "GuessTheNumber"
