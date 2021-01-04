@@ -11,9 +11,11 @@ public class CurrentGuessChangedEvent extends EventWithArgs<CurrentGuessChangedE
 
     public static class Args {
         public final List<Integer> currentGuess;
+        public final int digitCount;
 
-        public Args(List<Integer> currentGuess) {
+        public Args(List<Integer> currentGuess, int digitCount) {
             this.currentGuess = currentGuess;
+            this.digitCount = digitCount;
         }
     }
 }

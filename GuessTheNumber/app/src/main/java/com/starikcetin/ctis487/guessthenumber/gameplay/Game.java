@@ -74,6 +74,7 @@ public class Game implements AutoCloseable {
     private void onGuess(Evaluation evaluation) {
         guessCount++;
         currentGuess.clear();
+        onCurrentGuessChanged();
 
         GuessEvent.Args args = new GuessEvent.Args(evaluation, guessCount);
         GuessEvent event = new GuessEvent(this, args);
@@ -127,7 +128,7 @@ public class Game implements AutoCloseable {
     }
 
     private void onCurrentGuessChanged() {
-        CurrentGuessChangedEvent.Args args = new CurrentGuessChangedEvent.Args(new ArrayList<>(currentGuess));
+        CurrentGuessChangedEvent.Args args = new CurrentGuessChangedEvent.Args(new ArrayList<>(currentGuess), digitCount);
         CurrentGuessChangedEvent event = new CurrentGuessChangedEvent(this, args);
         GameSys.currentGuessChangeEventBus.emit(event);
     }
