@@ -1,5 +1,6 @@
 package com.starikcetin.ctis487.guessthenumber;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,8 @@ public class GameOptionsFragment extends Fragment {
 
     private void mainMenuOnClick(View view) {
         GameSys.cleanup();
-        // TODO: switch to main menu
+        Intent intent = new Intent(getContext(), MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 }

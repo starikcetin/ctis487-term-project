@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/endgame_flag_imageView_static"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:tint="#000000"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,8 +21,8 @@
 
     <ImageView
         android:id="@+id/endgame_number_imageView_static"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:tint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/endgame_number_textView"
@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="#####"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/endgame_number_imageView_static"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -46,8 +47,8 @@
 
     <ImageView
         android:id="@+id/endgame_time_imageView_static"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:tint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/endgame_time_textView"
@@ -63,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="99:99"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/endgame_time_imageView_static"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -71,8 +73,8 @@
 
     <ImageView
         android:id="@+id/endgame_guessCount_imageView_static"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginTop="40dp"
         android:tint="#000000"
         app:layout_constraintEnd_toStartOf="@+id/endgame_guessCount_textView"
@@ -88,6 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:text="1000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/endgame_guessCount_imageView_static"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -99,6 +102,7 @@
         android:layout_width="200dp"
         android:layout_height="75dp"
         android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/black"
         android:onClick="mainMenuOnClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
