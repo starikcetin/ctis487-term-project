@@ -23,12 +23,14 @@ import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class HighscoresActivity extends AppCompatActivity {
+    private static final PrettyTime prettyTime = new PrettyTime();
 
     private RecyclerView mRecyclerView;
 
@@ -117,8 +119,8 @@ public class HighscoresActivity extends AppCompatActivity {
         dialogDetails.setText("Score: " + selected.getScore() + "\n"
                 + "Digits: " + selected.getDigitCount() + "\n"
                 + "Guesses: " + selected.getGuessCount() + "\n"
-                + "Play Time: " + selected.getPlayTime() + "\n"
-                + "Timestamp: " + selected.getTimestamp() + "\n"
+                + "Playtime: " + selected.getPlayTime() + "\n"
+                + "Date: " + prettyTime.format(selected.getTimestamp()) + "\n"
         );
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
