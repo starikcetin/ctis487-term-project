@@ -2,8 +2,10 @@ package com.starikcetin.ctis487.guessthenumber;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -16,7 +18,7 @@ import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEve
 
 import java.util.Locale;
 
-public class GameActivity extends FragmentActivity {
+public class GameActivity extends AppCompatActivity {
 
     private TextView clockTextView;
     private TextView guessCountTextView;
@@ -25,6 +27,12 @@ public class GameActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        //hidding title bar
+        getSupportActionBar().hide();
+
+        //hidding the status bar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         clockTextView = findViewById(R.id.game_clock_textView);
         clockTextView.setText("00:00");

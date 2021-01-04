@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
+
 public class MainActivity extends AppCompatActivity {
     Intent intent = null;
 
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         if (view.getId() == R.id.playBtn) {
-
+            GameSys.newGame(3);
+            intent = new Intent(this, GameActivity.class);
         } else if (view.getId() == R.id.highscoreBtn) {
             intent = new Intent(this, HighscoresActivity.class);
         }
