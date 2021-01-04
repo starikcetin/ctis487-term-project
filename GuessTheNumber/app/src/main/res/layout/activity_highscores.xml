@@ -92,7 +92,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="8dp"
         android:gravity="right"
-        android:text="PLAY TIME"
+        android:text="PLAYTIME"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"

@@ -39,31 +39,87 @@
         android:layout_width="190dp"
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:onClick="onClick"
         android:text="Play"
         android:textSize="20sp"
         android:textStyle="bold"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/highscoreBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/pickDigitCountTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Pick your digit count:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/fiveDigitsBtn"
+        app:layout_constraintEnd_toEndOf="@+id/fiveDigitsBtn"
+        app:layout_constraintStart_toStartOf="@+id/fiveDigitsBtn" />
+
+    <Button
+        android:id="@+id/threeDigitsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:onClick="onClick"
+        android:text="3"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fiveDigitsBtn"
+        app:layout_constraintEnd_toStartOf="@+id/fiveDigitsBtn"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appMainLogo" />
+        app:layout_constraintTop_toTopOf="@+id/fiveDigitsBtn" />
+
+    <Button
+        android:id="@+id/fiveDigitsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="onClick"
+        android:text="5"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/highscoreBtn"
+        app:layout_constraintEnd_toStartOf="@+id/sevenDigitsBtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/threeDigitsBtn" />
+
+    <Button
+        android:id="@+id/sevenDigitsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:onClick="onClick"
+        android:text="7"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fiveDigitsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/fiveDigitsBtn"
+        app:layout_constraintTop_toTopOf="@+id/fiveDigitsBtn" />
 
     <Button
         android:id="@+id/highscoreBtn"
         android:layout_width="190dp"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="100dp"
         android:onClick="onClick"
         android:text="Highscores"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playBtn" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/digitSelectGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="threeDigitsBtn,fiveDigitsBtn,sevenDigitsBtn,pickDigitCountTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

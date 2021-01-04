@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('prettytime-5.0.0.Final.jar'))

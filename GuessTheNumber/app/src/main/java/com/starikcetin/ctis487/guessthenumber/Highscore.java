@@ -8,9 +8,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Highscore implements Parcelable {
+    public static final Creator<Highscore> CREATOR = new Creator<Highscore>() {
+        @Override
+        public Highscore createFromParcel(Parcel in) {
+            return new Highscore(in);
+        }
+
+        @Override
+        public Highscore[] newArray(int size) {
+            return new Highscore[size];
+        }
+    };
+    static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     private int id, score, digitCount, guessCount, playTime;
     private Date timestamp;
-    static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
     public Highscore(int score, int digitCount, int guessCount, int playTime, Date timestamp) {
         this.score = score;
@@ -55,18 +66,6 @@ public class Highscore implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Highscore> CREATOR = new Creator<Highscore>() {
-        @Override
-        public Highscore createFromParcel(Parcel in) {
-            return new Highscore(in);
-        }
-
-        @Override
-        public Highscore[] newArray(int size) {
-            return new Highscore[size];
-        }
-    };
 
     public int getId() {
         return id;

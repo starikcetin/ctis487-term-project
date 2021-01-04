@@ -1,14 +1,20 @@
 package com.starikcetin.ctis487.guessthenumber;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.Group;
+
+import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
 
 public class MainActivity extends AppCompatActivity {
     Intent intent = null;
+    private Group digitSelectGroup;
+    private Button playBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +26,32 @@ public class MainActivity extends AppCompatActivity {
 
         //hidding the status bar
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        digitSelectGroup = findViewById(R.id.digitSelectGroup);
+        playBtn = findViewById(R.id.playBtn);
     }
 
     public void onClick(View view) {
-        if (view.getId() == R.id.playBtn) {
+        int id = view.getId();
 
-        } else if (view.getId() == R.id.highscoreBtn) {
+        if (id == R.id.playBtn) {
+            playBtn.setVisibility(View.GONE);
+            digitSelectGroup.setVisibility(View.VISIBLE);
+        } else if (id == R.id.highscoreBtn) {
             intent = new Intent(this, HighscoresActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.threeDigitsBtn) {
+            launchGame(3);
+        } else if (id == R.id.fiveDigitsBtn) {
+            launchGame(5);
+        } else if (id == R.id.sevenDigitsBtn) {
+            launchGame(7);
         }
+    }
+
+    private void launchGame(int digitCount) {
+        GameSys.newGame(digitCount);
+        intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 }

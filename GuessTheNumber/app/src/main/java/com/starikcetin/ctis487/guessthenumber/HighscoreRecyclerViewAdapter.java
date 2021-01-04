@@ -10,9 +10,13 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
 import java.util.ArrayList;
 
 public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<HighscoreRecyclerViewAdapter.MyRecyclerViewItemHolder> {
+    private static final PrettyTime prettyTime = new PrettyTime();
+
     private Context context;
     private ArrayList<Highscore> mArrayList;
 
@@ -41,7 +45,7 @@ public class HighscoreRecyclerViewAdapter extends RecyclerView.Adapter<Highscore
         myRecyclerViewItemHolder.scoreTv.setText(hs.getScore() + "");
         myRecyclerViewItemHolder.guessesTv.setText(hs.getGuessCount() + "");
         myRecyclerViewItemHolder.playtimeTv.setText(hs.getPlayTime() + "");
-        myRecyclerViewItemHolder.timestampTv.setText(Highscore.formatter.format(hs.getTimestamp()) + "");
+        myRecyclerViewItemHolder.timestampTv.setText(prettyTime.format(hs.getTimestamp()) + "");
 
 
         myRecyclerViewItemHolder.parentLayout.setOnClickListener(new View.OnClickListener() {

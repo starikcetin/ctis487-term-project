@@ -12,6 +12,8 @@
         <service android:name=".ParseHighscoreJSONService"></service>
 
         <activity android:name=".HighscoresActivity"></activity>
+        <activity android:name=".EndgameActivity" />
+        <activity android:name=".GameActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
