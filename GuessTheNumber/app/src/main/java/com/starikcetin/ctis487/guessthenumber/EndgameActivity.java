@@ -36,6 +36,13 @@ public class EndgameActivity extends AppCompatActivity {
 
         TextView guessCountTv = findViewById(R.id.endgame_guessCount_textView);
         guessCountTv.setText(String.valueOf(gameSummary.guessCount));
+
+        if(isVictory) {
+            Sound.victory(this);
+        }
+        else {
+            Sound.defeat(this);
+        }
     }
 
     @Override
