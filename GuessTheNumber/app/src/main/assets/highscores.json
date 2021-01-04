@@ -1,0 +1,32 @@
+{
+  "highscores": [
+    {
+      "score": 100,
+      "digits": 4,
+      "guesses": 10,
+      "playtime": 150,
+      "timestamp": "03-01-2021 19:50:10"
+    },
+    {
+      "score": 90,
+      "digits": 4,
+      "guesses": 11,
+      "playtime": 160,
+      "timestamp": "03-01-2021 19:50:10"
+    },
+    {
+      "score": 160,
+      "digits": 4,
+      "guesses": 4,
+      "playtime": 100,
+      "timestamp": "03-01-2021 19:50:10"
+    },
+    {
+      "score": 150,
+      "digits": 4,
+      "guesses": 5,
+      "playtime": 120,
+      "timestamp": "03-01-2021 19:50:10"
+    }
+  ]
+}
