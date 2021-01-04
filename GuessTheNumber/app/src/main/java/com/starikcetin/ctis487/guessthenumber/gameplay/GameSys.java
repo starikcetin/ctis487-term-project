@@ -25,7 +25,9 @@ public class GameSys {
 
     /** tears-down the game */
     public static void cleanup() {
-        game.close();
-        game = null;
+        if(game != null) {
+            game.close();
+            game = null;
+        }
     }
 }

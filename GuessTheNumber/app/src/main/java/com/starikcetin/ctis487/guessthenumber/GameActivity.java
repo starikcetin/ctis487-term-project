@@ -1,5 +1,6 @@
 package com.starikcetin.ctis487.guessthenumber;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -11,6 +12,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.starikcetin.ctis487.guessthenumber.eventbus.EventListener;
 import com.starikcetin.ctis487.guessthenumber.gameplay.GameSys;
+import com.starikcetin.ctis487.guessthenumber.gameplay.events.GameOverEvent;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEvent;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.GuessEventListener;
 import com.starikcetin.ctis487.guessthenumber.gameplay.events.PlaytimeChangedEvent;
@@ -52,6 +54,7 @@ public class GameActivity extends AppCompatActivity {
 
         GameSys.playtimeChangedEventBus.addListener(this::OnEvent);
         GameSys.guessEventBus.addListener(this::OnEvent);
+        GameSys.gameOverEventBus.addListener(this::OnEvent);
     }
 
     @Override
@@ -64,7 +67,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void OnEvent(PlaytimeChangedEvent event) {
-        String clockStr = makeClockString(event.args.playtimeInSeconds);
+        String clockStr = Utils.makeClockString(event.args.playtimeInSeconds);
         clockTextView.setText(clockStr);
     }
 
@@ -73,9 +76,17 @@ public class GameActivity extends AppCompatActivity {
         guessCountTextView.setText(guessCountStr);
     }
 
-    private String makeClockString(int playtimeInSeconds) {
-        int minutes = playtimeInSeconds / 60;
-        int seconds = playtimeInSeconds % 60;
-        return String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds);
+    public void OnEvent(GameOverEvent event) {
+        // cleanup, since game is over
+        GameSys.cleanup();
+
+        // launch endgame activity
+        Intent intent = new Intent(this, EndgameActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("isVictory", event.args.isVictory);
+        bundle.putSerializable("summary", event.args.gameSummary);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
