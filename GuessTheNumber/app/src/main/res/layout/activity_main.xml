@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/appMainLogo"
-        android:layout_width="365dp"
-        android:layout_height="170dp"
+        android:layout_width="342dp"
+        android:layout_height="139dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="24dp"
         android:layout_marginTop="160dp"
